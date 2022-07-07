@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+$header-height: 60px;
+$primary-color: #014c8f;
+
+#container {
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  #header {
+    width: 100%;
+    min-height: $header-height;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 150ms linear;
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      cursor: pointer;
+      > * {
+        pointer-events: none;
+      }
+      &:hover {
+        color: $primary-color;
+      }
+      span {
+        font-size: 20px;
+        margin-right: 4px;
+      }
+      p {
+        font-size: 24px;
+      }
+    }
+    .actions {
+      display: flex;
+      div {
+        margin-right: 16px;
+        font-size: 28px;
+        color: #333;
+        cursor: pointer;
+        transition: all 150ms linear;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+  .menu-container {
+    position: fixed;
+    inset: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 50ms linear;
+    .screen-blur {
+      position: absolute;
+      inset: 0;
+      background-color: #000;
+      opacity: 0.6;
+      z-index: -1;
+    }
+    .menu {
+      width: 400px;
+      height: 100vh;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      transition: all 450ms ease-in;
+      &-header {
+        height: $header-height;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .close-icon {
+          font-size: 24px;
+          &:hover {
+            color: $primary-color;
+            animation: spin 2s linear infinite forwards;
+          }
+        }
+      }
+    }
+    .menu.active {
+      transform: translateX(0);
+    }
+  }
+  .menu-container.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
