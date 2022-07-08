@@ -13,6 +13,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style></style>
   </head>
   <body>
     <div id="container">
@@ -22,19 +23,6 @@
             <i class="fa-solid fa-bars"></i>
           </span>
           <p>Menu</p>
-        </div>
-        <div class="menu-container">
-          <div class="screen-blur"></div>
-          <div class="menu">
-            <div class="menu-header">
-              <div class="logo">
-                <img src="./img/logo.webp" alt="" />
-              </div>
-              <div class="close-icon">
-                <i class="fa-solid fa-xmark"></i>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="logo">
           <img src="./img/logo.webp" alt="" />
@@ -51,8 +39,51 @@
           </div>
         </div>
       </div>
-      <div id="nav"></div>
-      <div id="slider"></div>
+      <div class="menu-container">
+        <div class="screen-blur"></div>
+        <div class="menu">
+          <div class="menu-header">
+            <div class="logo">
+              <img src="./img/logo.webp" alt="" />
+            </div>
+            <div class="close-icon">
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+          </div>
+          <div class="menu-content">
+            <div class="guide">
+              <ul>
+                <li><a href="">Cửa hàng online</a></li>
+                <li><a href="">Hướng dẫn mua hàng</a></li>
+                <li><a href="">Thông tin thanh toán</a></li>
+                <li><a href="">Chuỗi cửa hàng MewShoes</a></li>
+              </ul>
+            </div>
+            <div class="menu-list">
+              <ul>
+                <li><a href="">Trang chủ</a></li>
+                <li><a href="">Giới thiệu</a></li>
+                <li><a href="">Sản phẩm</a></li>
+                <li><a href="">Giày thể thao</a></li>
+                <li><a href="">Giày chạy</a></li>
+                <li><a href="">Giày bóng rổ</a></li>
+                <li><a href="">Tin tức </a></li>
+                <li><a href="">Liên hệ</a></li>
+              </ul>
+            </div>
+            <div class="brands"></div>
+          </div>
+          <div class="social-media"></div>
+        </div>
+      </div>
+      <div id="slider">
+        <div class="slider-img">
+          <img
+            src="https://bizweb.dktcdn.net/100/415/502/themes/804563/assets/slide-img1.jpg?1652960916270"
+            alt=""
+          />
+        </div>
+      </div>
       <div id="content"></div>
       <div id="footer"></div>
     </div>
@@ -64,6 +95,22 @@
       };
       $(".menu-toggle").addEventListener("click", toggleOpenMenu);
       $(".close-icon").addEventListener("click", toggleOpenMenu);
+      const slider = $("#slider");
+      const sliderImages = [
+        "https://bizweb.dktcdn.net/100/415/502/themes/804563/assets/slide-img1.jpg?1652960916270",
+        "https://bizweb.dktcdn.net/100/415/502/themes/804563/assets/slide-img2.jpg?1652960916270",
+      ];
+      let index = 0;
+      const sliderImg = $("#slider img");
+      function handleChangeSlider(index) {
+        // sliderImg.setAttribute("src", sliderImages[index]);
+        sliderImg.src = sliderImages[index];
+      }
+      setInterval(() => {
+        index++;
+        if (index >= sliderImages.length) index = 0;
+        handleChangeSlider(index);
+      }, 4000);
     </script>
   </body>
 </html>
