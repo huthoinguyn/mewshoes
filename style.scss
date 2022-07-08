@@ -9,53 +9,82 @@ $header-height: 60px;
 $primary-color: #014c8f;
 $menu-footer-height: 48px;
 
+::-webkit-scrollbar {
+  width: 0;
+}
+// ::-webkit-scrollbar:horizontal {
+//   height: 0;
+// }
+// ::-webkit-scrollbar-thumb {
+//   background-color: $primary-color;
+// }
+
 #container {
   width: 100%;
   max-width: 1340px;
   margin: 0 auto;
+  min-height: 1600px;
 }
 #header {
-  width: 100%;
-  min-height: $header-height;
   background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 150ms linear;
-  .menu-toggle {
+  position: relative;
+  width: 100vw;
+  left: calc(-50vw + 50%);
+  .header-wrap {
+    width: 100%;
+    max-width: 1340px;
+    height: $header-height;
+    margin: 0 auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 8px;
-    cursor: pointer;
-    > * {
-      pointer-events: none;
-    }
-    &:hover {
-      color: $primary-color;
-    }
-    span {
-      font-size: 20px;
-      margin-right: 4px;
-    }
-    p {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 36px;
-    }
-  }
-  .actions {
-    display: flex;
-    div {
-      margin-right: 16px;
-      font-size: 28px;
-      color: #333;
+    transition: all 150ms linear;
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      padding: 8px;
       cursor: pointer;
-      transition: all 150ms linear;
+      > * {
+        pointer-events: none;
+      }
       &:hover {
-        transform: scale(1.2);
+        color: $primary-color;
+      }
+      span {
+        font-size: 20px;
+        margin-right: 4px;
+      }
+      p {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 36px;
+      }
+    }
+    .actions {
+      display: flex;
+      div {
+        margin-right: 16px;
+        font-size: 28px;
+        color: #333;
+        cursor: pointer;
+        transition: all 150ms linear;
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
   }
+  .scroll-progress {
+    width: 0;
+    height: 4px;
+    background-color: #014c8f;
+    transition: width 50ms ease-in;
+  }
+}
+#header.is-fixed {
+  position: fixed;
+  top: 0;
+  animation: fade 250ms forwards 1;
 }
 .menu-container {
   position: fixed;
@@ -78,7 +107,7 @@ $menu-footer-height: 48px;
     top: 0;
     left: 0;
     transform: translateX(-100%);
-    transition: all 450ms ease-in;
+    transition: transform 350ms ease-in;
     &-header {
       height: $header-height;
       display: flex;
@@ -102,24 +131,30 @@ $menu-footer-height: 48px;
         ul {
           list-style: none;
           padding: 8px 16px;
-          a {
-            display: block;
-            font-size: 15px;
-            line-height: 22px;
-            font-weight: 400;
-            padding: 4px 24px 4px 30px;
-            color: #000;
-            text-decoration: none;
-            &:hover {
-              color: $primary-color;
+          li {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            a {
+              display: block;
+              font-size: 15px;
+              line-height: 22px;
+              font-weight: 400;
+              padding: 4px 24px 4px 16px;
+              color: #000;
+              text-decoration: none;
+              &:hover {
+                color: $primary-color;
+              }
             }
           }
         }
       }
       .menu-list {
         flex: 1;
+        min-height: 48px;
         overflow-y: auto;
-        &::-webkit-scrollbar{
+        &::-webkit-scrollbar {
           width: 2px;
           background-color: $primary-color;
         }
@@ -140,9 +175,44 @@ $menu-footer-height: 48px;
           }
         }
       }
+      .brands {
+        width: 100%;
+        overflow-x: hidden;
+        ul {
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 4px 0;
+          li {
+            width: 50%;
+            overflow: hidden;
+            border: 0.2px solid #eee;
+            &:hover {
+              box-shadow: 2px 2px 8px #999;
+            }
+            a {
+              padding: 15px 7px;
+              display: block;
+              img {
+                width: 90%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
     }
     .social-media {
       height: $menu-footer-height;
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      a {
+        text-decoration: none;
+      }
     }
   }
   .menu.active {
@@ -170,6 +240,14 @@ $menu-footer-height: 48px;
       opacity: 1;
       transition: all 300ms ease-in;
     }
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 @keyframes spin {

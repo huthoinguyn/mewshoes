@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mew Shoes</title>
-    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -13,31 +12,39 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="style.css" />
     <style></style>
   </head>
   <body>
     <div id="container">
       <div id="header">
-        <div class="menu-toggle">
-          <span class="menu-icon">
-            <i class="fa-solid fa-bars"></i>
-          </span>
-          <p>Menu</p>
-        </div>
-        <div class="logo">
-          <img src="./img/logo.webp" alt="" />
-        </div>
-        <div class="actions">
-          <div class="search-icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="header-wrap">
+          <div class="menu-toggle">
+            <span class="menu-icon">
+              <i class="fa-solid fa-bars"></i>
+            </span>
+            <p>Menu</p>
           </div>
-          <div class="user-icon">
-            <i class="fa-solid fa-user"></i>
+          <div class="logo">
+            <img src="./img/logo.webp" alt="" />
           </div>
-          <div class="cart-icon">
-            <i class="fa-solid fa-bag-shopping"></i>
+          <div class="actions">
+            <div class="search-icon">
+              <span class="material-symbols-outlined"> search </span>
+            </div>
+            <div class="user-icon">
+              <span class="material-symbols-outlined"> person </span>
+            </div>
+            <div class="cart-icon">
+              <span class="material-symbols-outlined"> shopping_bag </span>
+            </div>
           </div>
         </div>
+        <div class="scroll-progress"></div>
       </div>
       <div class="menu-container">
         <div class="screen-blur"></div>
@@ -53,10 +60,24 @@
           <div class="menu-content">
             <div class="guide">
               <ul>
-                <li><a href="">Cửa hàng online</a></li>
-                <li><a href="">Hướng dẫn mua hàng</a></li>
-                <li><a href="">Thông tin thanh toán</a></li>
-                <li><a href="">Chuỗi cửa hàng MewShoes</a></li>
+                <li>
+                  <span class="material-symbols-outlined"> shopping_cart </span>
+                  <a href="">Cửa hàng online</a>
+                </li>
+                <li>
+                  <span class="material-symbols-outlined"> near_me </span>
+                  <a href="">Hướng dẫn mua hàng</a>
+                </li>
+                <li>
+                  <span class="material-symbols-outlined">
+                    qr_code_scanner
+                  </span>
+                  <a href="">Thông tin thanh toán</a>
+                </li>
+                <li>
+                  <span class="material-symbols-outlined"> store </span>
+                  <a href="">Chuỗi cửa hàng MewShoes</a>
+                </li>
               </ul>
             </div>
             <div class="menu-list">
@@ -71,9 +92,55 @@
                 <li><a href="">Liên hệ</a></li>
               </ul>
             </div>
-            <div class="brands"></div>
+            <div class="brands">
+              <ul>
+                <li>
+                  <a href="">
+                    <img src="./img/brand5.webp" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="./img/brand8.webp" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="./img/brand6.webp" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="./img/brand2.webp" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="./img/brand3.webp" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="./img/puma-150x150-0.webp" alt="" />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="social-media"></div>
+          <div class="social-media">
+            <a href="">
+              <img src="./img/facebook.webp" alt="" />
+            </a>
+            <a href="">
+              <img src="./img/twitter.webp" alt="" />
+            </a>
+            <a href="">
+              <img src="./img/instagram.webp" alt="" />
+            </a>
+            <a href="">
+              <img src="./img/youtube.webp" alt="" />
+            </a>
+          </div>
         </div>
       </div>
       <div id="slider">
@@ -111,6 +178,22 @@
         if (index >= sliderImages.length) index = 0;
         handleChangeSlider(index);
       }, 4000);
+
+      const scrollProgress = $(".scroll-progress");
+      const header = $("#header");
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset >= header.offsetHeight) {
+          document.body.style.paddingTop = `${header.offsetHeight}px`;
+          header.classList.add("is-fixed");
+        } else {
+          document.body.style.paddingTop = 0;
+          header.classList.remove("is-fixed");
+        }
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        scrollProgress.style.width = `${(window.pageYOffset / height) * 100}%`;
+      });
     </script>
   </body>
 </html>
