@@ -57,14 +57,13 @@
 #header .header-wrap .actions {
   display: flex;
 }
-#header .header-wrap .actions div {
+#header .header-wrap .actions .action-icon {
   margin-right: 16px;
-  font-size: 28px;
   color: #333;
   cursor: pointer;
   transition: all 150ms linear;
 }
-#header .header-wrap .actions div:hover {
+#header .header-wrap .actions .action-icon:hover {
   transform: scale(1.2);
 }
 #header .scroll-progress {
@@ -111,7 +110,10 @@
   justify-content: space-around;
 }
 .menu-container .menu-header .close-icon {
-  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .menu-container .menu-header .close-icon:hover {
   color: #014c8f;
@@ -209,6 +211,11 @@
 }
 .menu-container .menu .social-media a {
   text-decoration: none;
+  transform: scale(1) rotate(0);
+  transition: transform 150ms ease-in;
+}
+.menu-container .menu .social-media a:hover {
+  transform: scale(1.2) rotate(6deg);
 }
 .menu-container .menu.active {
   transform: translateX(0);
