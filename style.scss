@@ -62,9 +62,8 @@ $menu-footer-height: 48px;
     }
     .actions {
       display: flex;
-      div {
+      .action-icon {
         margin-right: 16px;
-        font-size: 28px;
         color: #333;
         cursor: pointer;
         transition: all 150ms linear;
@@ -114,7 +113,10 @@ $menu-footer-height: 48px;
       align-items: center;
       justify-content: space-around;
       .close-icon {
-        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
         &:hover {
           color: $primary-color;
           animation: spin 2s linear infinite forwards;
@@ -212,6 +214,11 @@ $menu-footer-height: 48px;
       align-items: center;
       a {
         text-decoration: none;
+        transform: scale(1) rotate(0);
+        transition: transform 150ms ease-in;
+        &:hover {
+          transform: scale(1.2) rotate(6deg);
+        }
       }
     }
   }
